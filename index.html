@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -79,6 +79,42 @@
     .chat-form button{padding:11px 15px;font-size:13px}
     .chat-note{font-size:11px;color:var(--muted);margin:12px 2px 0}
     .chat-status{font-size:12px;color:#087fb8;margin-top:10px;min-height:0;white-space:pre-wrap}
+
+    /* Tombol SEMESTA AI */
+    .ai-launcher{
+      min-height:300px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:20px;
+      background:linear-gradient(145deg,#0c1830,#17365b);
+      color:#fff;
+      transition:.25s;
+    }
+    .ai-launcher:hover{
+      background:linear-gradient(145deg,#142846,#204b78);
+    }
+    .ai-robot{
+      width:112px;
+      height:112px;
+      display:grid;
+      place-items:center;
+      border-radius:28px;
+      background:linear-gradient(145deg,#173b61,#263b70);
+      box-shadow:0 0 30px #27bceb35;
+    }
+    .ai-robot svg{
+      width:82px;
+      height:82px;
+      display:block;
+    }
+    .ai-launcher strong{
+      font-size:23px;
+      letter-spacing:.06em;
+      color:#fff;
+    }
+
     .faq-list{max-width:800px;margin:auto;display:grid;gap:12px}
     .faq-list details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px}
     .faq-list summary{font-weight:750;color:var(--navy);cursor:pointer}
@@ -115,6 +151,7 @@
       .chat-form button{width:100%}
       .wa-float{right:12px;bottom:12px;padding:11px 15px;font-size:13px}
       .service img{height:190px}
+      .ai-launcher{min-height:260px}
     }
   </style>
 </head>
@@ -255,27 +292,44 @@
   <section class="chat-section" id="chat">
     <div class="container">
       <div class="section-head">
-        <div class="eyebrow">Dua asisten, fungsi berbeda</div>
-        <h2>Pilih ruang percakapan</h2>
-        <p>SEMESTA AI umum tetap terpisah dari Virtual Assistant khusus layanan hukum dan keluarga.</p>
+        <div class="eyebrow">Dua Asisten, Satu Ekosistem SEMESTA</div>
+        <h2>Pilih layanan yang sesuai dengan kebutuhan Anda</h2>
+        <p>Dua layanan cerdas yang siap membantu kebutuhan informasi, ide, bisnis, dokumen hukum, dan konsultasi keluarga Anda.</p>
       </div>
 
       <div class="chat-grid">
-        <article class="chat-shell">
-          <div class="chat-head">
-            <div class="bot-mark">✦</div>
-            <div><strong>SEMESTA AI</strong></div>
-          </div>
-          <div class="chat-body">
-            <div class="bubble">Halo! Anda dapat menggunakan SEMESTA AI untuk pertanyaan umum, ide, informasi, dan kebutuhan sehari-hari.</div>
-            <form class="chat-form" id="generalChatForm">
-              <input id="generalChatInput" type="text" placeholder="Tulis pertanyaan umum..." aria-label="Pertanyaan untuk SEMESTA AI">
-              <button class="btn btn-primary" type="submit">Kirim</button>
-            </form>
-            <div class="chat-status" id="generalChatStatus" role="status" aria-live="polite"></div>
-          </div>
-        </article>
 
+        <!-- SEMESTA AI: ikon dan tulisan menuju website SEMESTA AI -->
+        <a class="chat-shell ai-launcher"
+           href="https://semestaalam.github.io/"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Buka SEMESTA AI di tab baru">
+
+          <div class="ai-robot">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ikon kepala robot">
+              <defs>
+                <linearGradient id="robotGradient" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#27bceb"/>
+                  <stop offset="100%" stop-color="#7764d8"/>
+                </linearGradient>
+              </defs>
+              <path d="M50 9V19" stroke="#72ddff" stroke-width="5" stroke-linecap="round"/>
+              <circle cx="50" cy="7" r="5" fill="#72ddff"/>
+              <rect x="16" y="24" width="68" height="57" rx="17" fill="url(#robotGradient)" stroke="#a9eaff" stroke-width="2"/>
+              <path d="M16 43H9V62H16M84 43H91V62H84" fill="none" stroke="#72ddff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="25" y="35" width="50" height="32" rx="10" fill="#0c1830"/>
+              <circle cx="38" cy="50" r="5" fill="#27bceb"/>
+              <circle cx="62" cy="50" r="5" fill="#27bceb"/>
+              <path d="M39 60Q50 68 61 60" fill="none" stroke="#72ddff" stroke-width="3" stroke-linecap="round"/>
+              <path d="M34 81V88M66 81V88" stroke="#72ddff" stroke-width="5" stroke-linecap="round"/>
+            </svg>
+          </div>
+
+          <strong>SEMESTA AI</strong>
+        </a>
+
+        <!-- SEMESTA VIRTUAL ASSISTANT: dipertahankan -->
         <article class="chat-shell">
           <div class="chat-head secondary">
             <div class="bot-mark">✧</div>
@@ -291,6 +345,7 @@
             <p class="chat-note">AI bukan advokat, tidak mewakili Anda di pengadilan, dan tidak menjamin hasil perkara. Hindari mengirim NIK, kata sandi, atau dokumen sensitif melalui chat.</p>
           </div>
         </article>
+
       </div>
     </div>
   </section>
@@ -332,19 +387,9 @@
 
 <script>
   // Hanya backend baru SEMESTA VIRTUAL ASSISTANT yang digunakan di sini.
-  // SEMESTA AI umum sengaja belum dihubungkan.
+  // SEMESTA AI umum dibuka melalui tautan website tersendiri.
 
   const SEMESTA_VIRTUAL_API_URL = "https://script.google.com/macros/s/AKfycbyXSfbntP1SRFuJjxuaU1gDAClpkrWtrDOxR39TeuN3rHDb8tQtqTCp-mIqq-RQHgU/exec";
-
-  const generalForm = document.getElementById("generalChatForm");
-  const generalInput = document.getElementById("generalChatInput");
-  const generalStatus = document.getElementById("generalChatStatus");
-
-  generalForm.addEventListener("submit", function(event) {
-    event.preventDefault();
-    generalStatus.textContent =
-      "SEMESTA AI umum akan diintegrasikan setelah pengujian Virtual Assistant selesai.";
-  });
 
   function detectService(message) {
     const text = message.toLowerCase();
@@ -427,3 +472,4 @@
 
 </body>
 </html>
+```
